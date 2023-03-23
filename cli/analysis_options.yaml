@@ -15,9 +15,10 @@ include: package:lint/strict.yaml
 
 # Uncomment the following section to specify additional rules.
 
-# linter:
-#   rules:
-#     - camel_case_types
+linter:
+  rules:
+    avoid_print: false
+    always_use_package_imports: false
 
 # analyzer:
 #   exclude:
