@@ -5,17 +5,19 @@ Simple cli based text editor created in dart.
 
 Following features are planned to be implemented:
 - File Manipulation
-	- Create
-	- Open
-	- Save
+	- Create (From Command Line Directly)
+	- Open (From Command Line Directly)
+	- Save (Using Ctrl + S)
 - Document Editing
-	- Cut
-	- Copy 
-	- Paste
-	- Find
-	- Find/Replace
-	- Undo/Redo
+	- Cut (Using Ctrl + X)
+	- Copy (Using Ctrl + C)
+	- Paste (Using Ctrl + V)
+	- Find	(Using Ctrl + F)
+	- Find/Replace (Using Ctrl + G)
+	- Undo (Using Ctrl + Z)
+	- Redo (Using Ctrl + Y)
 - Editor Settings
 	- Font
-	- Word Wrap
+	- Word Wrap (Using Ctrl + W)
+
 
