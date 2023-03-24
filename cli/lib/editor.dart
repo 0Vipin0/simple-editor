@@ -101,7 +101,7 @@ class Editor {
         }
         break;
       case ControlCharacter.arrowRight:
-        if (coordinate.x < content[coordinate.y].length - 1) {
+        if (coordinate.x < currentLine().length) {
           coordinate.x++;
         }
         break;
@@ -109,7 +109,7 @@ class Editor {
         coordinate.x = 0;
         break;
       case ControlCharacter.end:
-        coordinate.x = columns - 1;
+        coordinate.x = currentLine().length;
         break;
       case ControlCharacter.pageUp:
         coordinate.y = offsetY;
@@ -128,7 +128,14 @@ class Editor {
         break;
       default:
     }
+
+    if (coordinate.x > currentLine().length) {
+      coordinate.x = currentLine().length;
+    }
   }
+
+  String currentLine() =>
+      coordinate.y < content.length ? content[coordinate.y] : "";
 
   void openFile(String filename) {
     final File file = File(filename);
