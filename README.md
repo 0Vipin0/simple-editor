@@ -6,7 +6,7 @@ Simple cli based text editor created in dart.
 Following features are planned to be implemented:
 - File Manipulation
 	- Create (From Command Line Directly)
-	- Open (From Command Line Directly) [x]
+	- [x] Open (From Command Line Directly) 
 	- Save (Using Ctrl + S)
 - Document Editing
 	- Cut (Using Ctrl + X)
@@ -17,9 +17,9 @@ Following features are planned to be implemented:
 	- Undo (Using Ctrl + Z)
 	- Redo (Using Ctrl + Y)
 - Document Navigation
-	- Arrow Movement [x]
-	- Page UP and Page Down (Cover Entire Height) [x]
-	- Home and End (Start and End of line) [x]
+	- [x] Arrow Movement
+	- [x] Page UP and Page Down (Cover Entire Height)
+	- [x] Home and End (Start and End of line)
 - Editor Settings
 	- Font
 	- Word Wrap (Using Ctrl + W)
