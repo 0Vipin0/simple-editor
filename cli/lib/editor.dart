@@ -13,30 +13,43 @@ class Editor {
 
   int rows = 0;
   int columns = 0;
+  int offsetY = 0;
+  List<String> content = [];
 
   final CursorCoordinate coordinate = CursorCoordinate(x: 0, y: 0);
 
   void init() {
     columns = console.windowWidth;
-    rows = console.windowHeight;
+    rows = console.windowHeight - 1;
   }
 
   void refresh() {
     console.clearScreen();
     console.resetCursorPosition();
+    writeContent();
+    console.setTextStyle(inverted: true);
+    writeStatusBar();
+    console.setTextStyle();
+    console.cursorPosition = Coordinate(coordinate.y - offsetY, coordinate.x);
+  }
 
-    for (int i = 0; i < rows - 1; i++) {
-      console.write("~\r\n");
-    }
-    console.setBackgroundColor(ConsoleColor.white);
-    console.setForegroundColor(ConsoleColor.black);
-    console.write(statusMessage);
-    for (int i = 0; i < max(0, columns - statusMessage.length); i++) {
+  void writeStatusBar() {
+    console.write(coordinate);
+    for (int i = 0; i < max(0, columns - coordinate.toString().length); i++) {
       console.write(" ");
     }
-    console.setBackgroundColor(ConsoleColor.black);
-    console.setForegroundColor(ConsoleColor.white);
-    console.cursorPosition = Coordinate(coordinate.y, coordinate.x);
+  }
+
+  void writeContent() {
+    for (int i = 0; i < rows; i++) {
+      final int fileCoordinateY = offsetY + i;
+      if (fileCoordinateY >= content.length) {
+        console.write("~");
+      } else {
+        console.write(content[fileCoordinateY]);
+      }
+      console.write("\r\n");
+    }
   }
 
   void handleKey(Key key) {
@@ -62,7 +75,7 @@ class Editor {
         }
         break;
       case ControlCharacter.arrowDown:
-        if (coordinate.y < rows - 2) {
+        if (coordinate.y < content.length) {
           coordinate.y++;
         }
         break;
@@ -72,7 +85,7 @@ class Editor {
         }
         break;
       case ControlCharacter.arrowRight:
-        if (coordinate.x < columns - 2) {
+        if (coordinate.x < columns - 1) {
           coordinate.x++;
         }
         break;
@@ -83,6 +96,24 @@ class Editor {
         coordinate.x = columns - 1;
         break;
       default:
+    }
+  }
+
+  void openFile(String filename) {
+    final File file = File(filename);
+    try {
+      content = file.readAsLinesSync();
+    } on FileSystemException catch (e) {
+      print(e.message);
+      rethrow;
+    }
+  }
+
+  void scroll() {
+    if (coordinate.y >= offsetY + rows) {
+      offsetY = coordinate.y - rows;
+    } else if (coordinate.y < offsetY) {
+      offsetY = coordinate.y;
     }
   }
 }
