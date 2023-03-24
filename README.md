@@ -16,6 +16,10 @@ Following features are planned to be implemented:
 	- Find/Replace (Using Ctrl + G)
 	- Undo (Using Ctrl + Z)
 	- Redo (Using Ctrl + Y)
+- Document Navigation
+	- Arrow Movement
+	- Page UP and Page Down (Cover Entire Height)
+	- Home and End (Start and End of line)
 - Editor Settings
 	- Font
 	- Word Wrap (Using Ctrl + W)
